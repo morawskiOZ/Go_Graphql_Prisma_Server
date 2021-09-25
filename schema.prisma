@@ -1,0 +1,21 @@
+datasource db {
+    // could be postgresql or mysql
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+generator db {
+    provider = "go run github.com/prisma/prisma-client-go"
+}
+
+model User {
+    username String @id
+    posts    Post[]
+}
+
+model Post {
+    id             String @id @default(cuid())
+    title          String
+    author         User   @relation(fields: [authorUsername], references: [username])
+    authorUsername String
+}
