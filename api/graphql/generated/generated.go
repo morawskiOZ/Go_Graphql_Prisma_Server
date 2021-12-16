@@ -14,7 +14,7 @@ import (
 	"github.com/99designs/gqlgen/graphql/introspection"
 	gqlparser "github.com/vektah/gqlparser/v2"
 	"github.com/vektah/gqlparser/v2/ast"
-	"gitlab.com/morawskioz/camp_me_go/db"
+	"gitlab.com/morawskioz/camp_me_go/internal/prisma/db"
 )
 
 // region    ************************** generated!.gotpl **************************
@@ -242,7 +242,7 @@ func (ec *executionContext) introspectType(name string) (*introspection.Type, er
 }
 
 var sources = []*ast.Source{
-	{Name: "graph/schema.graphqls", Input: `directive @goField(forceResolver: Boolean, name: String) on INPUT_FIELD_DEFINITION
+	{Name: "graphql/schema.graphqls", Input: `directive @goField(forceResolver: Boolean, name: String) on INPUT_FIELD_DEFINITION
     | FIELD_DEFINITION
 
 directive @goModel(model: String, models: [String!]) on OBJECT
@@ -252,13 +252,13 @@ directive @goModel(model: String, models: [String!]) on OBJECT
     | INTERFACE
     | UNION
 
-type Post @goModel(model: "gitlab.com/morawskioz/camp_me_go/db.PostModel") {
+type Post @goModel(model: "gitlab.com/morawskioz/camp_me_go/internal/prisma/db.PostModel") {
     id:        String!
     title:     String!
     author: User! @goField(forceResolver: true)
     authorUsername: String!
 }
-type User @goModel(model: "gitlab.com/morawskioz/camp_me_go/db.UserModel") {
+type User @goModel(model: "gitlab.com/morawskioz/camp_me_go/internal/prisma/db.UserModel") {
     username: String!
     posts: [Post!]! @goField(forceResolver: true)
 }
@@ -409,7 +409,7 @@ func (ec *executionContext) _Mutation_createOnePost(ctx context.Context, field g
 	}
 	res := resTmp.(*db.PostModel)
 	fc.Result = res
-	return ec.marshalNPost2ᚖgitlabᚗcomᚋmorawskiozᚋcamp_me_goᚋdbᚐPostModel(ctx, field.Selections, res)
+	return ec.marshalNPost2ᚖgitlabᚗcomᚋmorawskiozᚋcamp_me_goᚋinternalᚋprismaᚋdbᚐPostModel(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Mutation_createOneUser(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -451,7 +451,7 @@ func (ec *executionContext) _Mutation_createOneUser(ctx context.Context, field g
 	}
 	res := resTmp.(*db.UserModel)
 	fc.Result = res
-	return ec.marshalNUser2ᚖgitlabᚗcomᚋmorawskiozᚋcamp_me_goᚋdbᚐUserModel(ctx, field.Selections, res)
+	return ec.marshalNUser2ᚖgitlabᚗcomᚋmorawskiozᚋcamp_me_goᚋinternalᚋprismaᚋdbᚐUserModel(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Post_id(ctx context.Context, field graphql.CollectedField, obj *db.PostModel) (ret graphql.Marshaler) {
@@ -556,7 +556,7 @@ func (ec *executionContext) _Post_author(ctx context.Context, field graphql.Coll
 	}
 	res := resTmp.(*db.UserModel)
 	fc.Result = res
-	return ec.marshalNUser2ᚖgitlabᚗcomᚋmorawskiozᚋcamp_me_goᚋdbᚐUserModel(ctx, field.Selections, res)
+	return ec.marshalNUser2ᚖgitlabᚗcomᚋmorawskiozᚋcamp_me_goᚋinternalᚋprismaᚋdbᚐUserModel(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Post_authorUsername(ctx context.Context, field graphql.CollectedField, obj *db.PostModel) (ret graphql.Marshaler) {
@@ -626,7 +626,7 @@ func (ec *executionContext) _Query_users(ctx context.Context, field graphql.Coll
 	}
 	res := resTmp.([]db.UserModel)
 	fc.Result = res
-	return ec.marshalNUser2ᚕgitlabᚗcomᚋmorawskiozᚋcamp_me_goᚋdbᚐUserModelᚄ(ctx, field.Selections, res)
+	return ec.marshalNUser2ᚕgitlabᚗcomᚋmorawskiozᚋcamp_me_goᚋinternalᚋprismaᚋdbᚐUserModelᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query_posts(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -661,7 +661,7 @@ func (ec *executionContext) _Query_posts(ctx context.Context, field graphql.Coll
 	}
 	res := resTmp.([]db.PostModel)
 	fc.Result = res
-	return ec.marshalNPost2ᚕgitlabᚗcomᚋmorawskiozᚋcamp_me_goᚋdbᚐPostModelᚄ(ctx, field.Selections, res)
+	return ec.marshalNPost2ᚕgitlabᚗcomᚋmorawskiozᚋcamp_me_goᚋinternalᚋprismaᚋdbᚐPostModelᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query___type(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -802,7 +802,7 @@ func (ec *executionContext) _User_posts(ctx context.Context, field graphql.Colle
 	}
 	res := resTmp.([]db.PostModel)
 	fc.Result = res
-	return ec.marshalNPost2ᚕgitlabᚗcomᚋmorawskiozᚋcamp_me_goᚋdbᚐPostModelᚄ(ctx, field.Selections, res)
+	return ec.marshalNPost2ᚕgitlabᚗcomᚋmorawskiozᚋcamp_me_goᚋinternalᚋprismaᚋdbᚐPostModelᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) ___Directive_name(ctx context.Context, field graphql.CollectedField, obj *introspection.Directive) (ret graphql.Marshaler) {
@@ -2386,11 +2386,11 @@ func (ec *executionContext) marshalNBoolean2bool(ctx context.Context, sel ast.Se
 	return res
 }
 
-func (ec *executionContext) marshalNPost2gitlabᚗcomᚋmorawskiozᚋcamp_me_goᚋdbᚐPostModel(ctx context.Context, sel ast.SelectionSet, v db.PostModel) graphql.Marshaler {
+func (ec *executionContext) marshalNPost2gitlabᚗcomᚋmorawskiozᚋcamp_me_goᚋinternalᚋprismaᚋdbᚐPostModel(ctx context.Context, sel ast.SelectionSet, v db.PostModel) graphql.Marshaler {
 	return ec._Post(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNPost2ᚕgitlabᚗcomᚋmorawskiozᚋcamp_me_goᚋdbᚐPostModelᚄ(ctx context.Context, sel ast.SelectionSet, v []db.PostModel) graphql.Marshaler {
+func (ec *executionContext) marshalNPost2ᚕgitlabᚗcomᚋmorawskiozᚋcamp_me_goᚋinternalᚋprismaᚋdbᚐPostModelᚄ(ctx context.Context, sel ast.SelectionSet, v []db.PostModel) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -2414,7 +2414,7 @@ func (ec *executionContext) marshalNPost2ᚕgitlabᚗcomᚋmorawskiozᚋcamp_me_
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNPost2gitlabᚗcomᚋmorawskiozᚋcamp_me_goᚋdbᚐPostModel(ctx, sel, v[i])
+			ret[i] = ec.marshalNPost2gitlabᚗcomᚋmorawskiozᚋcamp_me_goᚋinternalᚋprismaᚋdbᚐPostModel(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -2434,7 +2434,7 @@ func (ec *executionContext) marshalNPost2ᚕgitlabᚗcomᚋmorawskiozᚋcamp_me_
 	return ret
 }
 
-func (ec *executionContext) marshalNPost2ᚖgitlabᚗcomᚋmorawskiozᚋcamp_me_goᚋdbᚐPostModel(ctx context.Context, sel ast.SelectionSet, v *db.PostModel) graphql.Marshaler {
+func (ec *executionContext) marshalNPost2ᚖgitlabᚗcomᚋmorawskiozᚋcamp_me_goᚋinternalᚋprismaᚋdbᚐPostModel(ctx context.Context, sel ast.SelectionSet, v *db.PostModel) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "must not be null")
@@ -2459,11 +2459,11 @@ func (ec *executionContext) marshalNString2string(ctx context.Context, sel ast.S
 	return res
 }
 
-func (ec *executionContext) marshalNUser2gitlabᚗcomᚋmorawskiozᚋcamp_me_goᚋdbᚐUserModel(ctx context.Context, sel ast.SelectionSet, v db.UserModel) graphql.Marshaler {
+func (ec *executionContext) marshalNUser2gitlabᚗcomᚋmorawskiozᚋcamp_me_goᚋinternalᚋprismaᚋdbᚐUserModel(ctx context.Context, sel ast.SelectionSet, v db.UserModel) graphql.Marshaler {
 	return ec._User(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNUser2ᚕgitlabᚗcomᚋmorawskiozᚋcamp_me_goᚋdbᚐUserModelᚄ(ctx context.Context, sel ast.SelectionSet, v []db.UserModel) graphql.Marshaler {
+func (ec *executionContext) marshalNUser2ᚕgitlabᚗcomᚋmorawskiozᚋcamp_me_goᚋinternalᚋprismaᚋdbᚐUserModelᚄ(ctx context.Context, sel ast.SelectionSet, v []db.UserModel) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -2487,7 +2487,7 @@ func (ec *executionContext) marshalNUser2ᚕgitlabᚗcomᚋmorawskiozᚋcamp_me_
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNUser2gitlabᚗcomᚋmorawskiozᚋcamp_me_goᚋdbᚐUserModel(ctx, sel, v[i])
+			ret[i] = ec.marshalNUser2gitlabᚗcomᚋmorawskiozᚋcamp_me_goᚋinternalᚋprismaᚋdbᚐUserModel(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -2507,7 +2507,7 @@ func (ec *executionContext) marshalNUser2ᚕgitlabᚗcomᚋmorawskiozᚋcamp_me_
 	return ret
 }
 
-func (ec *executionContext) marshalNUser2ᚖgitlabᚗcomᚋmorawskiozᚋcamp_me_goᚋdbᚐUserModel(ctx context.Context, sel ast.SelectionSet, v *db.UserModel) graphql.Marshaler {
+func (ec *executionContext) marshalNUser2ᚖgitlabᚗcomᚋmorawskiozᚋcamp_me_goᚋinternalᚋprismaᚋdbᚐUserModel(ctx context.Context, sel ast.SelectionSet, v *db.UserModel) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "must not be null")

@@ -1,4 +1,4 @@
-package graph
+package graphql
 
 // This file will be automatically regenerated based on the schema, any resolver implementations
 // will be copied through when generating and any unknown code will be moved to the end.
@@ -7,8 +7,8 @@ import (
 	"context"
 	"fmt"
 
-	"gitlab.com/morawskioz/camp_me_go/db"
-	"gitlab.com/morawskioz/camp_me_go/graph/generated"
+	"gitlab.com/morawskioz/camp_me_go/api/graphql/generated"
+	"gitlab.com/morawskioz/camp_me_go/internal/prisma/db"
 )
 
 func (r *mutationResolver) CreateOnePost(ctx context.Context, authorUsername string, title string) (*db.PostModel, error) {

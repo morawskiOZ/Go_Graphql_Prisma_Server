@@ -8,13 +8,13 @@ directive @goModel(model: String, models: [String!]) on OBJECT
     | INTERFACE
     | UNION
 
-type Post @goModel(model: "gitlab.com/morawskioz/camp_me_go/db.PostModel") {
+type Post @goModel(model: "gitlab.com/morawskioz/camp_me_go/internal/prisma/db.PostModel") {
     id:        String!
     title:     String!
     author: User! @goField(forceResolver: true)
     authorUsername: String!
 }
-type User @goModel(model: "gitlab.com/morawskioz/camp_me_go/db.UserModel") {
+type User @goModel(model: "gitlab.com/morawskioz/camp_me_go/internal/prisma/db.UserModel") {
     username: String!
     posts: [Post!]! @goField(forceResolver: true)
 }
