@@ -6,14 +6,9 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/99designs/gqlgen/graphql/handler"
-	"github.com/99designs/gqlgen/graphql/playground"
-	"github.com/gorilla/mux"
-	graph "gitlab.com/morawskioz/camp_me_go/api/graphql"
-	"gitlab.com/morawskioz/camp_me_go/api/graphql/generated"
-	"gitlab.com/morawskioz/camp_me_go/cmd/server/middleware"
+	"github.com/joho/godotenv"
+	"gitlab.com/morawskioz/camp_me_go/cmd/server/router"
 	"gitlab.com/morawskioz/camp_me_go/internal/prisma"
-	"gitlab.com/morawskioz/camp_me_go/internal/prisma/db"
 )
 
 const defaultPort = "8080"
@@ -24,25 +19,19 @@ func main() {
 		os.Exit(1)
 	}
 
+	if err := godotenv.Load("../../.env"); err != nil {
+		fmt.Printf("Fatal error: %+v\n", err)
+		os.Exit(1)
+	}
+
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = defaultPort
 	}
 
-	prismaClient := db.NewClient()
-	if err := prismaClient.Prisma.Connect(); err != nil {
-		panic(err)
-	}
-
-	r := mux.NewRouter()
-
-	srv := handler.NewDefaultServer((generated.NewExecutableSchema(generated.Config{Resolvers: &graph.Resolver{Prisma: prismaClient}})))
-
-	jwtMiddleware := middleware.CreateJWTMiddleware()
-
-	r.Handle("/", playground.Handler("GraphQL playground", "/query"))
-	r.Handle("/query", jwtMiddleware.Handler(srv))
+	rtr := router.New()
 
 	log.Printf("connect to http://localhost:%s/ for GraphQL playground", port)
-	log.Fatal(http.ListenAndServe(":"+port, r))
+	log.Fatal(http.ListenAndServe(":"+port, rtr))
+
 }
