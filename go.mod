@@ -8,7 +8,6 @@ require (
 	github.com/gin-contrib/cors v1.3.1
 	github.com/gin-gonic/gin v1.7.7
 	github.com/golang-jwt/jwt v3.2.2+incompatible
-	github.com/gorilla/mux v1.8.0
 	github.com/hashicorp/golang-lru v0.5.4 // indirect
 	github.com/iancoleman/strcase v0.2.0
 	github.com/joho/godotenv v1.3.0
