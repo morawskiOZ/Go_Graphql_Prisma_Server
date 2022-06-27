@@ -1,5 +1,5 @@
 # Go Gql Pirsma API
-Graphql API with Prisma and Postgress starter. Example if how to connect those technologies to create fast and easy to use API.
+Graphql API with Prisma and Postgress starter. Example of how to connect those technologies to create fast and easy to use API.
 
 ### Technologies
 - Graphql server, built with gqlgen
